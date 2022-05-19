@@ -2,3 +2,7 @@ h1 {
   font-size: 1.8rem;
   padding: 2rem 0;
 }
+
+.header-logo {
+  font-family: 'Pacifico', cursive;
+}

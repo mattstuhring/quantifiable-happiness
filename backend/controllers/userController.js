@@ -34,7 +34,7 @@ const registerUser = (req, res, next) => {
     .where('email', email)
     .first()
     .then((row) => {
-      console.log('registerUser: ' + row);
+      console.log(row);
 
       if (row) {
         return res.status(400).json('User already exists.');
@@ -49,8 +49,6 @@ const registerUser = (req, res, next) => {
           if (err) {
             next(err);
           }
-
-          console.log('hash: ' + hash);
 
           knex('users')
             .insert({
@@ -95,8 +93,6 @@ const loginUser = (req, res, next) => {
         if (err) {
           return res.status(500).json('Something went wrong.');
         }
-
-        console.log('RESPONSE: ' + response);
 
         if (!response) {
           return res.status(400).json('Email or password is incorrect.');

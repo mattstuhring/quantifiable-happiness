@@ -41,10 +41,14 @@ class LoginScreen extends Component {
           password: ''
         });
 
+        localStorage.setItem('username', res.data.username);
+
+        this.props.handleUsername(res.data.username);
+
         this.props.history.push('/');
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   };
 
