@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button, Jumbotron } from 'react-bootstrap';
+import intro from '../intro.png';
 
 export class HomeScreen extends Component {
   render() {
     return (
-      <div>
-        <Row className='justify-content-center'>
-          <Col md='auto'>
-            <h1>Welcome</h1>
+      <div className='home'>
+        <Row>
+          <Col className='justify-content-center' md='5'>
+            <Jumbotron>
+              <h1>Quantifiable Happiness</h1>
+              <p className='question'>What does your happiness look like?</p>
+              <p>
+                <Button size='md' variant='primary' href='/register'>
+                  LEARN MORE
+                </Button>
+              </p>
+            </Jumbotron>
           </Col>
-        </Row>
-        <Row className='justify-content-center'>
-          <Col md='auto'>
-            <p>What does your happiness look like?</p>
-          </Col>
-        </Row>
-        <Row className='justify-content-center'>
-          <Col md='auto'>
-            <a href='/login'>Login</a> / <a href='/register'>Sign Up</a>
+          <Col className='justify-content-center' md='7'>
+            <img src={intro} id='intro-img' alt=''></img>
           </Col>
         </Row>
       </div>

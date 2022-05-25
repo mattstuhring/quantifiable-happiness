@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import logo from '../logo.png';
 
 export class Header extends Component {
@@ -38,31 +38,48 @@ export class Header extends Component {
           </Nav>
         );
       } else {
-        return null;
+        return (
+          <Nav>
+            <Button href='/register' variant='primary' size='sm'>
+              Sign Up
+            </Button>
+            <Button
+              href='/login'
+              className='login-btn'
+              variant='outline-primary'
+              size='sm'
+            >
+              Login
+            </Button>
+          </Nav>
+        );
       }
     };
 
     return (
-      <Navbar bg='light' expand='lg'>
+      <Navbar fixed='top' expand='lg'>
         <Container>
           <Navbar.Brand href='/'>
             <img
               alt=''
               src={logo}
-              width='30'
-              height='30'
+              width='50'
+              height='45'
               className='d-inline-block align-top'
-            />{' '}
-            <span className='header-logo'>Quantifiable Happiness</span>
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
+          <Navbar.Collapse
+            id='basic-navbar-nav'
+            className='justify-content-end'
+          >
             <Nav className='me-auto'>
-              <Nav.Link href='#metrics'>Metrics</Nav.Link>
+              <Nav.Link href='#home'>Home</Nav.Link>
+              <Nav.Link href='#about'>About</Nav.Link>
+              <Nav.Link href='#tools'>Tools</Nav.Link>
+              <Nav.Link href='#contact'>Contact</Nav.Link>
             </Nav>
-          </Navbar.Collapse>
 
-          <Navbar.Collapse className='justify-content-end'>
             {username()}
           </Navbar.Collapse>
         </Container>
