@@ -1,27 +1,106 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Jumbotron } from 'react-bootstrap';
 import intro from '../intro.png';
+import analysis from '../analysis.png';
+import about from '../about.png';
+import collect from '../collect.png';
+import process from '../process.png';
+import examine from '../examine.png';
+import report from '../report.png';
 
 export class HomeScreen extends Component {
   render() {
     return (
       <div className='home'>
-        <Row>
-          <Col className='justify-content-center' md='5'>
-            <Jumbotron>
-              <h1>Quantifiable Happiness</h1>
-              <p className='question'>What does your happiness look like?</p>
+        {/* INTRO */}
+        <div id='intro'>
+          <Row>
+            <Col className='justify-content-center' md='5'>
+              <Jumbotron>
+                <h1>Quantifiable Happiness</h1>
+                <p className='question'>What does your happiness look like?</p>
+                <p>
+                  <Button size='md' variant='primary' href='/register'>
+                    LEARN MORE
+                  </Button>
+                </p>
+              </Jumbotron>
+            </Col>
+            <Col className='justify-content-center' md='7'>
+              <img src={intro} id='intro-img' alt=''></img>
+            </Col>
+          </Row>
+        </div>
+
+        {/* ABOUT */}
+        <div id='about'>
+          <Row>
+            <Col className='justify-content-center' md='7'>
+              <img src={about} id='about-img' alt=''></img>
+            </Col>
+            <Col className='justify-content-center' md='5'>
+              <h1>About Us</h1>
+              <p>Mental health awareness</p>
               <p>
-                <Button size='md' variant='primary' href='/register'>
-                  LEARN MORE
-                </Button>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-            </Jumbotron>
-          </Col>
-          <Col className='justify-content-center' md='7'>
-            <img src={intro} id='intro-img' alt=''></img>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
+        </div>
+
+        {/* HOW IT WORKS */}
+        <div id='how'>
+          <Row>
+            <Col className='justify-content-center' md='12'>
+              <h1>How it Works</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col className='justify-content-center' md='3'>
+              <h3>Collect</h3>
+              <img src={collect} id='collect-img' alt=''></img>
+            </Col>
+            <Col className='justify-content-center' md='3'>
+              <h3>Process</h3>
+              <img src={process} id='process-img' alt=''></img>
+            </Col>
+            <Col className='justify-content-center' md='3'>
+              <h3>Analyze</h3>
+              <img src={examine} id='examine-img' alt=''></img>
+            </Col>
+            <Col className='justify-content-center' md='3'>
+              <h3>Report</h3>
+              <img src={report} id='report-img' alt=''></img>
+            </Col>
+          </Row>
+        </div>
+
+        {/* TOOLS */}
+        <div id='tools'>
+          <Row>
+            <Col className='justify-content-center' md='5'>
+              <h1>Tools</h1>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </Col>
+            <Col className='justify-content-center' md='7'>
+              <img src={analysis} id='analysis-img' alt=''></img>
+            </Col>
+          </Row>
+        </div>
       </div>
     );
   }
