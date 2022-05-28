@@ -74,11 +74,11 @@ export class Header extends Component {
             className='justify-content-end'
           >
             <Nav className='me-auto'>
-              <Nav.Link href='#home'>Home</Nav.Link>
-              <Nav.Link href='#about'>About</Nav.Link>
-              <Nav.Link href='#how'>How it Works</Nav.Link>
-              <Nav.Link href='#tools'>Tools</Nav.Link>
-              <Nav.Link href='#contact'>Contact</Nav.Link>
+              <Nav.Link href='#intro-nav'>Home</Nav.Link>
+              <Nav.Link href='#about-nav'>About</Nav.Link>
+              <Nav.Link href='#how-nav'>How it Works</Nav.Link>
+              <Nav.Link href='#tools-nav'>Tools</Nav.Link>
+              <Nav.Link href='#contact-nav'>Contact</Nav.Link>
             </Nav>
 
             {username()}

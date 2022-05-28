@@ -14,6 +14,7 @@ export class HomeScreen extends Component {
     return (
       <div className='home'>
         {/* INTRO */}
+        <div id='intro-nav'></div>
         <div id='intro'>
           <Row>
             <Col className='justify-content-center' md='5'>
@@ -34,6 +35,7 @@ export class HomeScreen extends Component {
         </div>
 
         {/* ABOUT */}
+        <div id='about-nav'></div>
         <div id='about'>
           <Row>
             <Col className='justify-content-center' md='7'>
@@ -56,6 +58,7 @@ export class HomeScreen extends Component {
         </div>
 
         {/* HOW IT WORKS */}
+        <div id='how-nav'></div>
         <div id='how'>
           <Row>
             <Col className='justify-content-center col-center' md='12'>
@@ -83,6 +86,7 @@ export class HomeScreen extends Component {
         </div>
 
         {/* TOOLS */}
+        <div id='tools-nav'></div>
         <div id='tools'>
           <Row>
             <Col className='justify-content-center' md='5'>
@@ -104,7 +108,8 @@ export class HomeScreen extends Component {
         </div>
 
         {/* CONTACT */}
-        <div id='tools'>
+        <div id='contact-nav'></div>
+        <div id='contact'>
           <Row>
             <Col className='justify-content-center' md='7'>
               <img src={contact} id='contact-img' alt=''></img>
@@ -120,6 +125,23 @@ export class HomeScreen extends Component {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
+              <ul>
+                <li>
+                  <a href='mailto:whereyouatmatt@gmail.com?subject = Quantifiable Happiness Feedback'>
+                    Email
+                  </a>
+                </li>
+                <li>
+                  <a href='https://github.com/mattstuhring/quantifiable-happiness'>
+                    Github
+                  </a>
+                </li>
+                <li>
+                  <a href='https://www.linkedin.com/in/mattstuhring/'>
+                    LinkedIn
+                  </a>
+                </li>
+              </ul>
             </Col>
           </Row>
         </div>
