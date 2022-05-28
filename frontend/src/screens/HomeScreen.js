@@ -7,6 +7,7 @@ import collect from '../collect.png';
 import process from '../process.png';
 import examine from '../examine.png';
 import report from '../report.png';
+import contact from '../contact.png';
 
 export class HomeScreen extends Component {
   render() {
@@ -57,24 +58,24 @@ export class HomeScreen extends Component {
         {/* HOW IT WORKS */}
         <div id='how'>
           <Row>
-            <Col className='justify-content-center' md='12'>
+            <Col className='justify-content-center col-center' md='12'>
               <h1>How it Works</h1>
             </Col>
           </Row>
           <Row>
-            <Col className='justify-content-center' md='3'>
+            <Col className='justify-content-center col-center' md='3'>
               <h3>Collect</h3>
               <img src={collect} id='collect-img' alt=''></img>
             </Col>
-            <Col className='justify-content-center' md='3'>
+            <Col className='justify-content-center col-center' md='3'>
               <h3>Process</h3>
               <img src={process} id='process-img' alt=''></img>
             </Col>
-            <Col className='justify-content-center' md='3'>
+            <Col className='justify-content-center col-center' md='3'>
               <h3>Analyze</h3>
               <img src={examine} id='examine-img' alt=''></img>
             </Col>
-            <Col className='justify-content-center' md='3'>
+            <Col className='justify-content-center col-center' md='3'>
               <h3>Report</h3>
               <img src={report} id='report-img' alt=''></img>
             </Col>
@@ -98,6 +99,27 @@ export class HomeScreen extends Component {
             </Col>
             <Col className='justify-content-center' md='7'>
               <img src={analysis} id='analysis-img' alt=''></img>
+            </Col>
+          </Row>
+        </div>
+
+        {/* CONTACT */}
+        <div id='tools'>
+          <Row>
+            <Col className='justify-content-center' md='7'>
+              <img src={contact} id='contact-img' alt=''></img>
+            </Col>
+            <Col className='justify-content-center' md='5'>
+              <h1>Contact Us</h1>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
             </Col>
           </Row>
         </div>

@@ -97,7 +97,7 @@ html,
   width: 200px;
 }
 
-#how .justify-content-center {
+.col-center {
   text-align: center;
 }
 
@@ -113,5 +113,20 @@ html,
 }
 
 #analysis-img {
+  width: 100%;
+}
+
+/* CONTACT */
+#contact {
+  margin-top: 200px;
+}
+
+#contact h1 {
+  font-size: 4.3rem;
+  font-family: 'Libre Baskerville', serif;
+  color: #1a0f91;
+}
+
+#contact-img {
   width: 100%;
 }
