@@ -11,18 +11,27 @@ class App extends Component {
     super(props);
 
     this.state = {
-      username: ''
+      username: '',
+      showHomeNav: false
     };
   }
 
   componentDidMount = () => {
     const username = localStorage.getItem('username');
 
-    console.log('username: ' + username);
-
     if (username) {
       this.setState({
         username
+      });
+    }
+
+    const showHomeNav = localStorage.getItem('showHomeNav');
+
+    console.log('App showHomeNav: ' + showHomeNav);
+
+    if (showHomeNav) {
+      this.setState({
+        showHomeNav
       });
     }
   };
@@ -30,7 +39,7 @@ class App extends Component {
   handleUsername = () => {
     const username = localStorage.getItem('username');
 
-    console.log('username: ' + username);
+    console.log('App handle username: ' + username);
 
     if (username) {
       this.setState({
@@ -42,7 +51,10 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Header username={this.state.username} />
+        <Header
+          username={this.state.username}
+          showHomeNav={this.state.showHomeNav}
+        />
 
         <main>
           <Container>

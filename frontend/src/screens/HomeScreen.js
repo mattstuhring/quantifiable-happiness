@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Button, Jumbotron } from 'react-bootstrap';
+import { Row, Col, Button, Card } from 'react-bootstrap';
 import intro from '../intro.png';
 import analysis from '../analysis.png';
 import about from '../about.png';
@@ -10,23 +10,43 @@ import report from '../report.png';
 import contact from '../contact.png';
 
 export class HomeScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showHomeNav: null
+    };
+  }
+
+  componentDidMount = () => {
+    const showHomeNav = localStorage.getItem('showHomeNav');
+
+    console.log('HomeScreen showHomeNav: ' + showHomeNav);
+
+    if (showHomeNav) {
+      localStorage.removeItem('showHomeNav');
+    }
+  };
+
   render() {
     return (
       <div className='home'>
         {/* INTRO */}
         <div id='intro-nav'></div>
         <div id='intro'>
-          <Row>
-            <Col className='justify-content-center' md='5'>
-              <Jumbotron>
-                <h1>Quantifiable Happiness</h1>
-                <p className='question'>What does your happiness look like?</p>
-                <p>
-                  <Button size='md' variant='primary' href='/register'>
+          <Row className='justify-content-center'>
+            <Col md='5'>
+              <Card bsPrefix='intro-card'>
+                <Card.Body>
+                  <Card.Title>Quantifiable Happiness</Card.Title>
+                  <Card.Text className='question'>
+                    What does your happiness look like?
+                  </Card.Text>
+                  <Button size='md' variant='primary' href='#about-nav'>
                     LEARN MORE
                   </Button>
-                </p>
-              </Jumbotron>
+                </Card.Body>
+              </Card>
             </Col>
             <Col className='justify-content-center' md='7'>
               <img src={intro} id='intro-img' alt=''></img>
@@ -67,20 +87,33 @@ export class HomeScreen extends Component {
           </Row>
           <Row>
             <Col className='justify-content-center col-center' md='3'>
-              <h3>Collect</h3>
+              <h3>1. Collect</h3>
               <img src={collect} id='collect-img' alt=''></img>
             </Col>
             <Col className='justify-content-center col-center' md='3'>
-              <h3>Process</h3>
+              <h3>2. Process</h3>
               <img src={process} id='process-img' alt=''></img>
             </Col>
             <Col className='justify-content-center col-center' md='3'>
-              <h3>Analyze</h3>
+              <h3>3. Analyze</h3>
               <img src={examine} id='examine-img' alt=''></img>
             </Col>
             <Col className='justify-content-center col-center' md='3'>
-              <h3>Report</h3>
+              <h3>4. Report</h3>
               <img src={report} id='report-img' alt=''></img>
+            </Col>
+          </Row>
+          <Row className='how-content'>
+            <Col className='justify-content-center' md='12'>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
             </Col>
           </Row>
         </div>

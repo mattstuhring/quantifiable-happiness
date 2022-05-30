@@ -12,6 +12,14 @@ class LoginScreen extends Component {
     };
   }
 
+  componentDidMount = () => {
+    localStorage.setItem('showHomeNav', true);
+
+    const showHomeNav = localStorage.getItem('showHomeNav');
+
+    console.log('Login showHomeNav: ' + showHomeNav);
+  };
+
   onChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
@@ -56,12 +64,16 @@ class LoginScreen extends Component {
     const { email, password } = this.state;
 
     return (
-      <Container>
-        <Row className='justify-content-md-center'>
-          <Col xs={12} md={6}>
+      <div id='login'>
+        <Row className='justify-content-center col-center'>
+          <Col md={12}>
             <h1>Login</h1>
+          </Col>
+        </Row>
+        <Row className='justify-content-center'>
+          <Col xs={12} md={6}>
             <Form onSubmit={this.onSubmit}>
-              <Form.Group controlId='email'>
+              <Form.Group controlId='email' className='mb-3'>
                 <Form.Label>Email Address</Form.Label>
                 <Form.Control
                   type='email'
@@ -71,7 +83,7 @@ class LoginScreen extends Component {
                   onChange={this.onChange}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId='password'>
+              <Form.Group controlId='password' className='mb-3'>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type='password'
@@ -94,7 +106,7 @@ class LoginScreen extends Component {
             </Row>
           </Col>
         </Row>
-      </Container>
+      </div>
     );
   }
 }

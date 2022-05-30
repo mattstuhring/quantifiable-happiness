@@ -8,11 +8,8 @@ export class Header extends Component {
 
     this.state = {
       username: '',
-      loggedIn: false
+      isLoggedIn: false
     };
-
-    console.log('Header');
-    console.log(this.props);
   }
 
   handleLogout = () => {
@@ -25,6 +22,31 @@ export class Header extends Component {
   };
 
   render() {
+    const showHomeNav = () => {
+      if (this.props.showHomeNav) {
+        return (
+          <Nav>
+            <Button href='/' variant='primary'>
+              HOME
+            </Button>
+          </Nav>
+        );
+      } else {
+        return (
+          <Nav>
+            <Nav.Link href='#intro-nav'>Home</Nav.Link>
+            <Nav.Link href='#about-nav'>About</Nav.Link>
+            <Nav.Link href='#how-nav'>How it Works</Nav.Link>
+            <Nav.Link href='#tools-nav'>Tools</Nav.Link>
+            <Nav.Link href='#contact-nav'>Contact</Nav.Link>
+            <Button href='/login' variant='primary'>
+              GET STARTED
+            </Button>
+          </Nav>
+        );
+      }
+    };
+
     const username = () => {
       if (this.props.username) {
         return (
@@ -37,54 +59,34 @@ export class Header extends Component {
             </Nav.Link>
           </Nav>
         );
-      } else {
-        return (
-          <Nav>
-            <Button href='/register' variant='primary' size='sm'>
-              Sign Up
-            </Button>
-            <Button
-              href='/login'
-              className='login-btn'
-              variant='outline-primary'
-              size='sm'
-            >
-              Login
-            </Button>
-          </Nav>
-        );
       }
     };
 
     return (
-      <Navbar fixed='top' expand='lg'>
-        <Container>
-          <Navbar.Brand href='/'>
-            <img
-              alt=''
-              src={logo}
-              width='50'
-              height='45'
-              className='d-inline-block align-top'
-            />
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse
-            id='basic-navbar-nav'
-            className='justify-content-end'
-          >
-            <Nav className='me-auto'>
-              <Nav.Link href='#intro-nav'>Home</Nav.Link>
-              <Nav.Link href='#about-nav'>About</Nav.Link>
-              <Nav.Link href='#how-nav'>How it Works</Nav.Link>
-              <Nav.Link href='#tools-nav'>Tools</Nav.Link>
-              <Nav.Link href='#contact-nav'>Contact</Nav.Link>
-            </Nav>
+      <div>
+        <Navbar fixed='top' expand='lg'>
+          <Container>
+            <Navbar.Brand href='/'>
+              <img
+                alt=''
+                src={logo}
+                width='50'
+                height='45'
+                className='d-inline-block align-top'
+              />
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls='basic-navbar-nav' />
+            <Navbar.Collapse
+              id='basic-navbar-nav'
+              className='justify-content-end'
+            >
+              {showHomeNav()}
 
-            {username()}
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+              {username()}
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </div>
     );
   }
 }

@@ -29,6 +29,10 @@ html,
   border-color: #343a84 !important;
 }
 
+.col-center {
+  text-align: center;
+}
+
 /* NAV */
 .navbar {
   padding: 0.1rem 1rem !important;
@@ -40,8 +44,17 @@ html,
 }
 
 /* INTRO */
-.jumbotron {
-  background-color: white !important;
+.intro-card {
+  margin-top: 200px;
+  margin-left: 50px;
+}
+
+.intro-card .card-title {
+  padding: 2rem 0;
+  font-size: 4.3rem;
+  font-family: 'Libre Baskerville', serif;
+  padding-bottom: 15px;
+  color: #1a0f91;
 }
 
 .question {
@@ -101,8 +114,8 @@ html,
   width: 200px;
 }
 
-.col-center {
-  text-align: center;
+div.how-content.row {
+  margin-top: 50px;
 }
 
 /* TOOLS */
@@ -133,4 +146,26 @@ html,
 
 #contact-img {
   width: 100%;
+}
+
+/* LOGIN */
+#login {
+  margin-top: 100px;
+}
+
+#login h1 {
+  font-size: 4.3rem;
+  font-family: 'Libre Baskerville', serif;
+  color: #1a0f91;
+}
+
+/* REGISTER */
+#register {
+  margin-top: 100px;
+}
+
+#register h1 {
+  font-size: 4.3rem;
+  font-family: 'Libre Baskerville', serif;
+  color: #1a0f91;
 }

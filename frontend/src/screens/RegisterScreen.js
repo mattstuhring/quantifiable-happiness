@@ -15,6 +15,14 @@ class RegisterScreen extends Component {
     };
   }
 
+  componentDidMount = () => {
+    localStorage.setItem('showHomeNav', true);
+
+    const showHomeNav = localStorage.getItem('showHomeNav');
+
+    console.log('Register showHomeNav: ' + showHomeNav);
+  };
+
   onChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
@@ -64,15 +72,18 @@ class RegisterScreen extends Component {
     const { username, email, password, confirmPassword, error } = this.state;
 
     return (
-      <Container>
+      <div id='register'>
+        <Row className='justify-content-center col-center'>
+          <Col md={12}>
+            <h1>Sign Up</h1>
+          </Col>
+        </Row>
         <Row className='justify-content-md-center'>
           <Col xs={12} md={6}>
-            <h1>Sign Up</h1>
-
             {error ? <Alert variant='danger'>{error}</Alert> : null}
 
             <Form onSubmit={this.onSubmit}>
-              <Form.Group controlId='username'>
+              <Form.Group controlId='username' className='mb-3'>
                 <Form.Label>Username</Form.Label>
                 <Form.Control
                   type='text'
@@ -82,7 +93,7 @@ class RegisterScreen extends Component {
                   onChange={this.onChange}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId='email'>
+              <Form.Group controlId='email' className='mb-3'>
                 <Form.Label>Email Address</Form.Label>
                 <Form.Control
                   type='email'
@@ -92,7 +103,7 @@ class RegisterScreen extends Component {
                   onChange={this.onChange}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId='password'>
+              <Form.Group controlId='password' className='mb-3'>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type='password'
@@ -102,7 +113,7 @@ class RegisterScreen extends Component {
                   onChange={this.onChange}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId='confirmPassword'>
+              <Form.Group controlId='confirmPassword' className='mb-3'>
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control
                   type='password'
@@ -114,7 +125,7 @@ class RegisterScreen extends Component {
               </Form.Group>
 
               <Button type='submit' variant='primary'>
-                Register
+                Submit
               </Button>
             </Form>
 
@@ -125,7 +136,7 @@ class RegisterScreen extends Component {
             </Row>
           </Col>
         </Row>
-      </Container>
+      </div>
     );
   }
 }
