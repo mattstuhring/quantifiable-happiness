@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Form, Button, Row, Col, Alert } from 'react-bootstrap';
-import register from '../register.png';
+import register from '../images/register.png';
 
 class RegisterScreen extends Component {
   constructor(props) {

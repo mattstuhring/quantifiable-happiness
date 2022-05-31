@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Card } from 'react-bootstrap';
-import intro from '../intro.png';
-import analysis from '../analysis.png';
-import about from '../about.png';
-import collect from '../collect.png';
-import process from '../process.png';
-import examine from '../examine.png';
-import report from '../report.png';
-import contact from '../contact.png';
+import intro from '../images/intro.png';
+import analysis from '../images/analysis.png';
+import about from '../images/about.png';
+import collect from '../images/collect.png';
+import process from '../images/process.png';
+import examine from '../images/examine.png';
+import report from '../images/report.png';
+import contact from '../images/contact.png';
 
 export class HomeScreen extends Component {
   constructor(props) {

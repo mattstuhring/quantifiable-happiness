@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import login from '../login.png';
+import login from '../images/login.png';
 
 class LoginScreen extends Component {
   constructor(props) {
