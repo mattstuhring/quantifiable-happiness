@@ -22,43 +22,46 @@ export class Header extends Component {
   };
 
   render() {
-    const showHomeNav = () => {
-      if (this.props.showHomeNav) {
+    const showNav = () => {
+      if (this.props.username) {
         return (
           <Nav>
-            <Button href='/' variant='primary'>
-              HOME
+            <Nav.Link href='/dashboard'>Dashboard</Nav.Link>
+            <Nav.Link href='/explore'>Explore</Nav.Link>
+            <Nav.Link href='/profile'>Profile</Nav.Link>
+            <Button
+              className='logout-btn'
+              href='/'
+              onClick={this.handleLogout}
+              variant='primary'
+            >
+              LOGOUT
             </Button>
           </Nav>
         );
       } else {
-        return (
-          <Nav>
-            <Nav.Link href='#intro-nav'>Home</Nav.Link>
-            <Nav.Link href='#about-nav'>About</Nav.Link>
-            <Nav.Link href='#how-nav'>How it Works</Nav.Link>
-            <Nav.Link href='#tools-nav'>Tools</Nav.Link>
-            <Nav.Link href='#contact-nav'>Contact</Nav.Link>
-            <Button href='/login' variant='primary'>
-              GET STARTED
-            </Button>
-          </Nav>
-        );
-      }
-    };
-
-    const username = () => {
-      if (this.props.username) {
-        return (
-          <Nav>
-            <Navbar.Text>
-              Hello: <a href='/login'>{this.props.username}</a>
-            </Navbar.Text>
-            <Nav.Link href='/' onClick={this.handleLogout}>
-              Logout
-            </Nav.Link>
-          </Nav>
-        );
+        if (this.props.showHomeNav) {
+          return (
+            <Nav>
+              <Button href='/' variant='primary' onClick={this.handleLogout}>
+                GO HOME
+              </Button>
+            </Nav>
+          );
+        } else {
+          return (
+            <Nav>
+              <Nav.Link href='#intro-nav'>Home</Nav.Link>
+              <Nav.Link href='#about-nav'>About</Nav.Link>
+              <Nav.Link href='#how-nav'>How it Works</Nav.Link>
+              <Nav.Link href='#tools-nav'>Tools</Nav.Link>
+              <Nav.Link href='#contact-nav'>Contact</Nav.Link>
+              <Button href='/login' variant='primary'>
+                GET STARTED
+              </Button>
+            </Nav>
+          );
+        }
       }
     };
 
@@ -80,9 +83,7 @@ export class Header extends Component {
               id='basic-navbar-nav'
               className='justify-content-end'
             >
-              {showHomeNav()}
-
-              {username()}
+              {showNav()}
             </Navbar.Collapse>
           </Container>
         </Navbar>

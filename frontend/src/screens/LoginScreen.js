@@ -54,7 +54,7 @@ class LoginScreen extends Component {
 
         this.props.handleUsername(res.data.username);
 
-        this.props.history.push('/');
+        this.props.history.push('/dashboard');
       })
       .catch((err) => {
         console.log(err);
@@ -101,7 +101,7 @@ class LoginScreen extends Component {
                   </Form.Group>
 
                   <Button type='submit' variant='primary'>
-                    Submit
+                    SUBMIT
                   </Button>
                 </Form>
 

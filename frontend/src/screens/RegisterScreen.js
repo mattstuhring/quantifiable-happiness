@@ -131,7 +131,7 @@ class RegisterScreen extends Component {
                   </Form.Group>
 
                   <Button type='submit' variant='primary'>
-                    Submit
+                    SUBMIT
                   </Button>
                 </Form>
 

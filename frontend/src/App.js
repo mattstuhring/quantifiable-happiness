@@ -5,6 +5,9 @@ import Header from './components/Header';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import DashboardScreen from './screens/DashboardScreen';
+import ExploreScreen from './screens/ExploreScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 class App extends Component {
   constructor(props) {
@@ -66,6 +69,9 @@ class App extends Component {
               )}
             />
             <Route path='/register' component={RegisterScreen} />
+            <Route path='/dashboard' component={DashboardScreen} />
+            <Route path='/explore' component={ExploreScreen} />
+            <Route path='/profile' component={ProfileScreen} />
           </Container>
         </main>
       </Router>

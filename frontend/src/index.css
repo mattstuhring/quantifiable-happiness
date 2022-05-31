@@ -39,7 +39,8 @@ html,
   background-color: white !important;
 }
 
-.login-btn {
+.login-btn,
+.logout-btn {
   margin-left: 10px;
 }
 
@@ -190,4 +191,19 @@ div.how-content.row {
 
 #register img {
   width: 100%;
+}
+
+/* DASHBOARD */
+#dashboard {
+  margin-top: 100px;
+}
+
+/* EXPLORE */
+#explore {
+  margin-top: 100px;
+}
+
+/* PROFILE */
+#profile {
+  margin-top: 100px;
 }
