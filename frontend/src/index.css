@@ -43,6 +43,10 @@ html,
   margin-left: 10px;
 }
 
+a.nav-link.active {
+  color: rgba(0, 0, 0, 0.55) !important;
+}
+
 /* INTRO */
 .intro-card {
   margin-top: 200px;
@@ -150,13 +154,26 @@ div.how-content.row {
 
 /* LOGIN */
 #login {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 #login h1 {
   font-size: 4.3rem;
   font-family: 'Libre Baskerville', serif;
   color: #1a0f91;
+  margin-top: 100px;
+}
+
+#login form {
+  margin-top: 20px;
+}
+
+#login img {
+  width: 100%;
+}
+
+#login .form-wrapper {
+  padding: 0px 100px;
 }
 
 /* REGISTER */
@@ -168,4 +185,9 @@ div.how-content.row {
   font-size: 4.3rem;
   font-family: 'Libre Baskerville', serif;
   color: #1a0f91;
+  margin-top: 75px;
+}
+
+#register img {
+  width: 100%;
 }

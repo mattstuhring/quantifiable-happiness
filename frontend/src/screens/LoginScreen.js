@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Form, Button, Row, Col, Container } from 'react-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import login from '../login.png';
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -65,43 +66,50 @@ class LoginScreen extends Component {
 
     return (
       <div id='login'>
-        <Row className='justify-content-center col-center'>
-          <Col md={12}>
-            <h1>Login</h1>
-          </Col>
-        </Row>
         <Row className='justify-content-center'>
-          <Col xs={12} md={6}>
-            <Form onSubmit={this.onSubmit}>
-              <Form.Group controlId='email' className='mb-3'>
-                <Form.Label>Email Address</Form.Label>
-                <Form.Control
-                  type='email'
-                  placeholder='Enter email'
-                  name='email'
-                  value={email}
-                  onChange={this.onChange}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId='password' className='mb-3'>
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type='password'
-                  placeholder='Enter password'
-                  name='password'
-                  value={password}
-                  onChange={this.onChange}
-                ></Form.Control>
-              </Form.Group>
+          <Col md={6}>
+            <img src={login} id='login-img' alt=''></img>
+          </Col>
+          <Col md={6}>
+            <Row>
+              <Col md={12}>
+                <h1>Login</h1>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={8}>
+                <Form onSubmit={this.onSubmit}>
+                  <Form.Group controlId='email' className='mb-3'>
+                    <Form.Label>Email Address</Form.Label>
+                    <Form.Control
+                      type='email'
+                      placeholder='Enter email'
+                      name='email'
+                      value={email}
+                      onChange={this.onChange}
+                    ></Form.Control>
+                  </Form.Group>
+                  <Form.Group controlId='password' className='mb-3'>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type='password'
+                      placeholder='Enter password'
+                      name='password'
+                      value={password}
+                      onChange={this.onChange}
+                    ></Form.Control>
+                  </Form.Group>
 
-              <Button type='submit' variant='primary'>
-                Submit
-              </Button>
-            </Form>
+                  <Button type='submit' variant='primary'>
+                    Submit
+                  </Button>
+                </Form>
 
-            <Row className='py-3'>
-              <Col>
-                New User? <a href='/register'>Sign Up</a>
+                <Row className='py-3'>
+                  <Col>
+                    New User? <a href='/register'>Sign Up</a>
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </Col>
