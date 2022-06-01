@@ -30,8 +30,6 @@ class App extends Component {
 
     const showHomeNav = localStorage.getItem('showHomeNav');
 
-    console.log('App showHomeNav: ' + showHomeNav);
-
     if (showHomeNav) {
       this.setState({
         showHomeNav
@@ -41,8 +39,6 @@ class App extends Component {
 
   handleUsername = () => {
     const username = localStorage.getItem('username');
-
-    console.log('App handle username: ' + username);
 
     if (username) {
       this.setState({
@@ -69,7 +65,12 @@ class App extends Component {
               )}
             />
             <Route path='/register' component={RegisterScreen} />
-            <Route path='/dashboard' component={DashboardScreen} />
+            <Route
+              path='/dashboard'
+              render={(props) => (
+                <DashboardScreen {...props} username={this.state.username} />
+              )}
+            />
             <Route path='/explore' component={ExploreScreen} />
             <Route path='/profile' component={ProfileScreen} />
           </Container>

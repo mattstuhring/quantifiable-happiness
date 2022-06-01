@@ -21,8 +21,6 @@ export class HomeScreen extends Component {
   componentDidMount = () => {
     const showHomeNav = localStorage.getItem('showHomeNav');
 
-    console.log('HomeScreen showHomeNav: ' + showHomeNav);
-
     if (showHomeNav) {
       localStorage.removeItem('showHomeNav');
     }
