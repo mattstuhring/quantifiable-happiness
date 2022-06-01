@@ -15,11 +15,13 @@ class DashboardScreen extends Component {
           </Col>
         </Row>
         <Row>
-          <Col md={12}>Hello {this.props.username}.</Col>
+          <Col md={12}>
+            <h5>Welcome {this.props.username}.</h5>
+          </Col>
         </Row>
         <Row>
           <Col md={12}>
-            Welcome to your personal dashboard where we help you quantify your
+            This is your personal dashboard where we help you quantify your
             happiness.
           </Col>
         </Row>

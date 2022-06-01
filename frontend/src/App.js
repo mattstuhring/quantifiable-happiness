@@ -14,17 +14,17 @@ class App extends Component {
     super(props);
 
     this.state = {
-      username: '',
+      userInfo: null,
       showHomeNav: false
     };
   }
 
   componentDidMount = () => {
-    const username = localStorage.getItem('username');
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
-    if (username) {
+    if (userInfo) {
       this.setState({
-        username
+        userInfo
       });
     }
 
@@ -37,12 +37,10 @@ class App extends Component {
     }
   };
 
-  handleUsername = () => {
-    const username = localStorage.getItem('username');
-
-    if (username) {
+  handleUserInfo = (userInfo) => {
+    if (userInfo) {
       this.setState({
-        username
+        userInfo
       });
     }
   };
@@ -51,7 +49,7 @@ class App extends Component {
     return (
       <Router>
         <Header
-          username={this.state.username}
+          userInfo={this.state.userInfo}
           showHomeNav={this.state.showHomeNav}
         />
 
@@ -61,14 +59,14 @@ class App extends Component {
             <Route
               path='/login'
               render={(props) => (
-                <LoginScreen {...props} handleUsername={this.handleUsername} />
+                <LoginScreen {...props} handleUserInfo={this.handleUserInfo} />
               )}
             />
             <Route path='/register' component={RegisterScreen} />
             <Route
               path='/dashboard'
               render={(props) => (
-                <DashboardScreen {...props} username={this.state.username} />
+                <DashboardScreen {...props} {...this.state.userInfo} />
               )}
             />
             <Route path='/explore' component={ExploreScreen} />

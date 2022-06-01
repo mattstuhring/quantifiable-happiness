@@ -39,16 +39,16 @@ class LoginScreen extends Component {
     axios
       .post('/api/v1/users/login', { email, password }, config)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
 
         this.setState({
           email: '',
           password: ''
         });
 
-        localStorage.setItem('username', res.data.username);
+        localStorage.setItem('userInfo', JSON.stringify(res.data));
 
-        this.props.handleUsername(res.data.username);
+        this.props.handleUserInfo(res.data);
 
         this.props.history.push('/dashboard');
       })

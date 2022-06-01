@@ -2,28 +2,14 @@ import React, { Component } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import logo from '../images/logo.png';
 
-export class Header extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: '',
-      isLoggedIn: false
-    };
-  }
-
+class Header extends Component {
   handleLogout = () => {
-    localStorage.removeItem('username');
-
-    this.setState({
-      username: '',
-      loggedIn: false
-    });
+    localStorage.removeItem('userInfo');
   };
 
   render() {
     const showNav = () => {
-      if (this.props.username) {
+      if (this.props.userInfo) {
         return (
           <Nav>
             <Nav.Link href='/dashboard'>Dashboard</Nav.Link>
