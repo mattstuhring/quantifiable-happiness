@@ -15,6 +15,7 @@ class LoginScreen extends Component {
 
   componentDidMount = () => {
     localStorage.setItem('showHomeNav', true);
+    this.props.handleShowHomeNav(true);
   };
 
   onChange = (event) => {

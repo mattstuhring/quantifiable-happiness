@@ -17,7 +17,13 @@ class DashboardScreen extends Component {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
     if (!userInfo) {
+      localStorage.removeItem('userInfo');
+
+      this.props.handleUserInfo(null);
+
       this.props.history.push('/login');
+    } else if (Number(id) !== userInfo.id) {
+      console.log('ID does not match!');
     } else {
       const config = {
         headers: {

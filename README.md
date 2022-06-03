@@ -41,11 +41,11 @@ npm install
 4. In root directory, create .env file and add your MySQL values:
 
 ```
-NODE_ENV = development
-NODE_PORT = 5000
-MYSQL_USER = ?
-MYSQL_PASSWORD = ?
-MYSQL_DATABASE = ?
+NODE_ENV="development"
+NODE_PORT="5000"
+MYSQL_USER="add-your-mysql-user"
+MYSQL_PASSWORD="add-your-mysql-password"
+MYSQL_DATABASE="add-your-mysql-database"
 ```
 
 5. Seed database

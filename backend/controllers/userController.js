@@ -95,7 +95,7 @@ const loginUser = (req, res, next) => {
           return res.status(400).json('Email or password is incorrect.');
         }
 
-        const token = jwt.sign({ id: row.id }, 'SECRET_TOKEN_KEY', {
+        const token = jwt.sign({ id: row.id }, process.env.JWT_SECRET, {
           expiresIn: '2h'
         });
 

@@ -54,6 +54,12 @@ class App extends Component {
     }
   };
 
+  handleShowHomeNav = (showHomeNav) => {
+    this.setState({
+      showHomeNav
+    });
+  };
+
   render() {
     return (
       <Router>
@@ -69,11 +75,23 @@ class App extends Component {
             <Route
               path='/login'
               render={(props) => (
-                <LoginScreen {...props} handleUserInfo={this.handleUserInfo} />
+                <LoginScreen
+                  {...props}
+                  handleUserInfo={this.handleUserInfo}
+                  handleShowHomeNav={this.handleShowHomeNav}
+                />
               )}
             />
             <Route path='/register' component={RegisterScreen} />
-            <Route path='/dashboard/:id' component={DashboardScreen} />
+            <Route
+              path='/dashboard/:id'
+              render={(props) => (
+                <DashboardScreen
+                  {...props}
+                  handleUserInfo={this.handleUserInfo}
+                />
+              )}
+            />
             <Route path='/explore' component={ExploreScreen} />
             <Route path='/profile' component={ProfileScreen} />
           </Container>
