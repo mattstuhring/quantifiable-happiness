@@ -19,7 +19,7 @@ class App extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
     if (userInfo) {
@@ -35,7 +35,7 @@ class App extends Component {
         showHomeNav
       });
     }
-  };
+  }
 
   handleLogout = () => {
     localStorage.removeItem('userInfo');

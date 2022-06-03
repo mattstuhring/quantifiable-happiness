@@ -16,9 +16,9 @@ class RegisterScreen extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     localStorage.setItem('showHomeNav', true);
-  };
+  }
 
   onChange = (event) => {
     this.setState({

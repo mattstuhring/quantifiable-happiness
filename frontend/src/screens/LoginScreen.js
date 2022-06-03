@@ -13,10 +13,10 @@ class LoginScreen extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     localStorage.setItem('showHomeNav', true);
     this.props.handleShowHomeNav(true);
-  };
+  }
 
   onChange = (event) => {
     this.setState({

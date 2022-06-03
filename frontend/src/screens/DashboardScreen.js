@@ -12,7 +12,7 @@ class DashboardScreen extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     const { id } = this.props.match.params;
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
@@ -45,7 +45,7 @@ class DashboardScreen extends Component {
           console.log(err);
         });
     }
-  };
+  }
 
   render() {
     return (
