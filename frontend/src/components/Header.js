@@ -3,10 +3,6 @@ import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import logo from '../images/logo.png';
 
 class Header extends Component {
-  handleLogout = () => {
-    localStorage.removeItem('userInfo');
-  };
-
   render() {
     const showNav = () => {
       if (this.props.userInfo) {
@@ -18,7 +14,7 @@ class Header extends Component {
             <Button
               className='logout-btn'
               href='/'
-              onClick={this.handleLogout}
+              onClick={this.props.handleLogout}
               variant='primary'
             >
               LOGOUT
@@ -29,7 +25,11 @@ class Header extends Component {
         if (this.props.showHomeNav) {
           return (
             <Nav>
-              <Button href='/' variant='primary' onClick={this.handleLogout}>
+              <Button
+                href='/'
+                variant='primary'
+                onClick={this.props.handleLogout}
+              >
                 GO HOME
               </Button>
             </Nav>

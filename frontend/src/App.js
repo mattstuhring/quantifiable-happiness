@@ -28,13 +28,22 @@ class App extends Component {
       });
     }
 
-    const showHomeNav = localStorage.getItem('showHomeNav');
+    const showHomeNav = JSON.parse(localStorage.getItem('showHomeNav'));
 
     if (showHomeNav) {
       this.setState({
         showHomeNav
       });
     }
+  };
+
+  handleLogout = () => {
+    localStorage.removeItem('userInfo');
+
+    this.setState({
+      userInfo: null,
+      showHomeNav: false
+    });
   };
 
   handleUserInfo = (userInfo) => {
@@ -51,6 +60,7 @@ class App extends Component {
         <Header
           userInfo={this.state.userInfo}
           showHomeNav={this.state.showHomeNav}
+          handleLogout={this.handleLogout}
         />
 
         <main>
@@ -63,12 +73,7 @@ class App extends Component {
               )}
             />
             <Route path='/register' component={RegisterScreen} />
-            <Route
-              path='/dashboard'
-              render={(props) => (
-                <DashboardScreen {...props} {...this.state.userInfo} />
-              )}
-            />
+            <Route path='/dashboard/:id' component={DashboardScreen} />
             <Route path='/explore' component={ExploreScreen} />
             <Route path='/profile' component={ProfileScreen} />
           </Container>

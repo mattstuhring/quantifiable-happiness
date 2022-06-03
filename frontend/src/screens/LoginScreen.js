@@ -28,8 +28,6 @@ class LoginScreen extends Component {
 
     const { email, password } = this.state;
 
-    console.log('Logging in...');
-
     const config = {
       headers: {
         'Content-Type': 'application/json'
@@ -39,8 +37,6 @@ class LoginScreen extends Component {
     axios
       .post('/api/v1/users/login', { email, password }, config)
       .then((res) => {
-        console.log(res.data);
-
         this.setState({
           email: '',
           password: ''
@@ -50,7 +46,7 @@ class LoginScreen extends Component {
 
         this.props.handleUserInfo(res.data);
 
-        this.props.history.push('/dashboard');
+        this.props.history.push(`/dashboard/${res.data.id}`);
       })
       .catch((err) => {
         console.log(err);

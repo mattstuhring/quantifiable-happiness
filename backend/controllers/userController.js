@@ -74,9 +74,6 @@ const registerUser = (req, res, next) => {
 const loginUser = (req, res, next) => {
   const { email, password } = req.body;
 
-  console.log('EMAIL: ' + email);
-  console.log('PASSWORD: ' + password);
-
   knex('users')
     .where({
       email: email
@@ -105,10 +102,19 @@ const loginUser = (req, res, next) => {
         return res.status(200).json({
           id: row.id,
           username: row.username,
+          email: row.email,
           token
         });
       });
     });
 };
 
-module.exports = { registerUser, loginUser };
+const getUserDashboard = (req, res, next) => {
+  const id = req.params.id;
+
+  console.log('getUserDashboard id: ' + id);
+
+  return res.status(200).json('Successful dashboard');
+};
+
+module.exports = { registerUser, loginUser, getUserDashboard };

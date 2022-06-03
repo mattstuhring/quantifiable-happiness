@@ -1,12 +1,69 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 
 class DashboardScreen extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      userInfo: null,
+      userId: null
+    };
   }
 
+  componentDidMount = () => {
+    const userId = this.props.match.params.id;
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+    if (!userInfo) {
+      this.props.history.push('/login');
+    } else {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${userInfo.token}`
+        }
+      };
+
+      axios
+        .get(`/api/v1/users/dashboard/${userId}`, config)
+        .then((res) => {
+          console.log(res.data);
+          this.setState({
+            userInfo,
+            userId
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  handleGetUserDashboard = () => {
+    const { id } = this.state;
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${id}`
+      }
+    };
+
+    axios
+      .get(`/api/v1/users/dashboard/${id}`, config)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
+    console.log('dash render');
+    console.log(this.state);
     return (
       <div id='dashboard'>
         <Row>
@@ -16,7 +73,7 @@ class DashboardScreen extends Component {
         </Row>
         <Row>
           <Col md={12}>
-            <h5>Welcome {this.props.username}.</h5>
+            {/* <h5>Welcome {this.state.userInfo.username}.</h5> */}
           </Col>
         </Row>
         <Row>
