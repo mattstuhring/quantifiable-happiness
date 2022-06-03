@@ -9,6 +9,7 @@ class Header extends Component {
         return (
           <Nav>
             <Nav.Link href='/dashboard'>Dashboard</Nav.Link>
+            <Nav.Link href='/quantify'>Quantify</Nav.Link>
             <Nav.Link href='/explore'>Explore</Nav.Link>
             <Nav.Link href='/profile'>Profile</Nav.Link>
             <Button

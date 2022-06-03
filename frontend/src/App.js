@@ -8,6 +8,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import ExploreScreen from './screens/ExploreScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import QuantifyScreen from './screens/QuantifyScreen';
 
 class App extends Component {
   constructor(props) {
@@ -92,6 +93,7 @@ class App extends Component {
                 />
               )}
             />
+            <Route path='/quantify' component={QuantifyScreen} />
             <Route path='/explore' component={ExploreScreen} />
             <Route path='/profile' component={ProfileScreen} />
           </Container>

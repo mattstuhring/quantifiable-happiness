@@ -12,6 +12,7 @@ class ExploreScreen extends Component {
         <Row>
           <Col md={12}>
             <h1>Explore</h1>
+            <p>Learn how to improve your happiness.</p>
           </Col>
         </Row>
       </div>
