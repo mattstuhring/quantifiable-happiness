@@ -2,7 +2,7 @@ const knex = require('../../knex/knex.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const registerUser = (req, res, next) => {
+const registerUser = async (req, res, next) => {
   const { username, email, password, confirmPassword } = req.body;
 
   console.log('USERNAME: ' + username);
@@ -11,102 +11,77 @@ const registerUser = (req, res, next) => {
   console.log('CONFIRM: ' + confirmPassword);
 
   if (!username) {
-    res.status(400).send('Username cannot be empty.');
-    return;
+    return res.status(400).send('Username cannot be empty.');
   }
 
   if (!email) {
-    res.status(400).send('Email cannot be empty.');
-    return;
+    return res.status(400).send('Email cannot be empty.');
   }
 
   if (!password) {
-    res.status(400).send('Password cannot be empty.');
-    return;
+    return res.status(400).send('Password cannot be empty.');
   }
 
   if (confirmPassword !== password) {
-    res.status(400).send('Passwords do not match.');
-    return;
+    return res.status(400).send('Passwords do not match.');
   }
 
-  knex('users')
-    .where('email', email)
-    .first()
-    .then((row) => {
-      console.log(row);
+  try {
+    const user = await knex('users').where({ email }).first();
+    console.log(user);
 
-      if (row) {
-        return res.status(400).json('User already exists.');
-      }
+    if (user) {
+      return res.status(400).json('User already exists.');
+    }
 
-      bcrypt.genSalt(10, (err, salt) => {
-        if (err) {
-          next(err);
-        }
+    const hash = await bcrypt.hash(password, 10);
 
-        bcrypt.hash(password, salt, (err, hash) => {
-          if (err) {
-            next(err);
-          }
+    const userId = knex('users').insert({ username, email, password: hash }, [
+      'id'
+    ]);
 
-          knex('users')
-            .insert({
-              username,
-              email,
-              password: hash
-            })
-            .then((response) => {
-              console.log('bcrypt hash res: ' + response);
+    if (!userId) {
+      return res.status(400).json('User failed to be created');
+    }
 
-              res.status(200).json('Successful registration');
-            })
-            .catch((err) => {
-              console.error('bcrypt hash error: ' + err);
-
-              next(err);
-            });
-        });
-      });
-    });
+    res.status(200).json('User successfully registered');
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
 };
 
-const loginUser = (req, res, next) => {
+const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
 
-  knex('users')
-    .where({
-      email: email
-    })
-    .first()
-    .then((row) => {
-      console.log(row);
+  try {
+    const user = await knex('users').where({ email }).first();
+    console.log(user);
 
-      if (!row) {
-        return res.status(400).json('Account does not exist.');
-      }
+    if (!user) {
+      return res.status(400).json('Account does not exist.');
+    }
 
-      bcrypt.compare(password, row.password, (err, response) => {
-        if (err) {
-          return res.status(500).json('Something went wrong.');
-        }
+    const match = await bcrypt.compare(password, user.password);
 
-        if (!response) {
-          return res.status(400).json('Email or password is incorrect.');
-        }
+    if (!match) {
+      return res.status(400).json('Email or password is incorrect.');
+    }
 
-        const token = jwt.sign({ id: row.id }, process.env.JWT_SECRET, {
-          expiresIn: '2h'
-        });
-
-        return res.status(200).json({
-          id: row.id,
-          username: row.username,
-          email: row.email,
-          token
-        });
-      });
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: '2h'
     });
+
+    return res.status(200).json({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      token
+    });
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
 };
 
 const getUserDashboard = (req, res, next) => {

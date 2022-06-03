@@ -10,16 +10,14 @@ const protect = (req, res, next) => {
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
-    token = req.headers.authorization.split(' ')[1];
+    try {
+      token = req.headers.authorization.split(' ')[1];
 
-    jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
-      if (err) {
-        return res.status(401).json('Not authorized, token failed.');
-      } else {
-        console.log(decoded);
-        console.log('Successful token');
-      }
-    });
+      jwt.verify(token, process.env.JWT_SECRET);
+    } catch (error) {
+      console.error(error);
+      return res.status(401).json('Not authorized, token failed.');
+    }
   }
 
   next();
