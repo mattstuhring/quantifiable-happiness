@@ -7,13 +7,13 @@ class DashboardScreen extends Component {
     super(props);
 
     this.state = {
-      userInfo: null,
-      userId: null
+      userId: null,
+      username: ''
     };
   }
 
   componentDidMount = () => {
-    const userId = this.props.match.params.id;
+    const { id } = this.props.match.params;
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
     if (!userInfo) {
@@ -27,12 +27,12 @@ class DashboardScreen extends Component {
       };
 
       axios
-        .get(`/api/v1/users/dashboard/${userId}`, config)
+        .get(`/api/v1/users/dashboard/${id}`, config)
         .then((res) => {
           console.log(res.data);
           this.setState({
-            userInfo,
-            userId
+            userId: id,
+            username: userInfo.username
           });
         })
         .catch((err) => {
@@ -41,29 +41,7 @@ class DashboardScreen extends Component {
     }
   };
 
-  handleGetUserDashboard = () => {
-    const { id } = this.state;
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${id}`
-      }
-    };
-
-    axios
-      .get(`/api/v1/users/dashboard/${id}`, config)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   render() {
-    console.log('dash render');
-    console.log(this.state);
     return (
       <div id='dashboard'>
         <Row>
@@ -73,7 +51,7 @@ class DashboardScreen extends Component {
         </Row>
         <Row>
           <Col md={12}>
-            {/* <h5>Welcome {this.state.userInfo.username}.</h5> */}
+            <h5>Welcome {this.state.username}.</h5>
           </Col>
         </Row>
         <Row>
