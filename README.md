@@ -1,10 +1,10 @@
 # Quantifiable Happiness
 
-What does your happiness look like?
+![Quantifiable Happiness](./frontend/src/images/landingpage.png)
 
 ## About The Project
 
-How happy are you? Let us help you answer that question.
+What does your happiness look like? Let us help you answer that question.
 
 ### Built With
 
