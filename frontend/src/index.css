@@ -211,4 +211,85 @@ div.how-content.row {
 /* QUANTIFY */
 #quantify {
   margin-top: 100px;
+  padding-bottom: 100px;
+}
+
+#quantify img {
+  width: 100%;
+}
+
+#quantify h1 {
+  font-size: 4.3rem;
+  font-family: 'Libre Baskerville', serif;
+  color: #1a0f91;
+  margin-top: 15px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+#quantify .card {
+  width: 525px;
+  margin-top: 25px;
+}
+
+#quantify .radio-mood {
+  margin-right: 15px;
+  margin-left: 15px;
+  border-radius: 50%;
+  padding: 6px 7px 6px 7px;
+  border: 1px solid lightgray !important;
+}
+
+#quantify .radio-location {
+  padding-left: 29px;
+  padding-right: 29px;
+}
+
+#quantify .radio-location p {
+  margin-bottom: 0px;
+  font-size: 0.9rem !important;
+}
+
+#quantify .radio-people {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+#quantify .radio-people p {
+  margin-bottom: 0px;
+  font-size: 0.9rem !important;
+}
+
+#quantify span {
+  margin-left: 5px;
+}
+
+#quantify .btn-secondary {
+  background-color: #4042e2 !important;
+  border-color: darkblue !important;
+}
+
+#quantify .btn-secondary:hover {
+  background-color: darkblue !important;
+}
+
+#quantify .btn-check:checked + .btn-secondary,
+#quantify .btn-secondary:active {
+  background-color: darkblue !important;
+}
+
+#quantify .btn-secondary:focus,
+#quantify .btn-check:checked + .btn-secondary:focus,
+#quantify .btn-check:focus + .btn-secondary {
+  box-shadow: none !important;
+}
+
+#quantify .card-header {
+  text-align: right;
+  background-color: #e4eafe;
+  color: #91b3fa;
+}
+
+#quantify .list-group-item {
+  background-color: ghostwhite;
 }
