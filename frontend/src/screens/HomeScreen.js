@@ -10,21 +10,9 @@ import report from '../images/report.png';
 import contact from '../images/contact.png';
 
 export class HomeScreen extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showHomeNav: null
-    };
+  componentDidMount() {
+    localStorage.removeItem('showGoHomeNav');
   }
-
-  componentDidMount = () => {
-    const showHomeNav = localStorage.getItem('showHomeNav');
-
-    if (showHomeNav) {
-      localStorage.removeItem('showHomeNav');
-    }
-  };
 
   render() {
     return (

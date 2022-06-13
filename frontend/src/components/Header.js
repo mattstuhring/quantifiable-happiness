@@ -15,7 +15,7 @@ class Header extends Component {
             <Button
               className='logout-btn'
               href='/'
-              onClick={this.props.handleLogout}
+              onClick={this.props.handleUserLogout}
               variant='primary'
             >
               LOGOUT
@@ -23,13 +23,13 @@ class Header extends Component {
           </Nav>
         );
       } else {
-        if (this.props.showHomeNav) {
+        if (this.props.showGoHomeNav) {
           return (
             <Nav>
               <Button
                 href='/'
                 variant='primary'
-                onClick={this.props.handleLogout}
+                onClick={this.props.handleUserLogout}
               >
                 GO HOME
               </Button>

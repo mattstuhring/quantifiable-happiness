@@ -14,8 +14,7 @@ class LoginScreen extends Component {
   }
 
   componentDidMount() {
-    localStorage.setItem('showHomeNav', true);
-    this.props.handleShowHomeNav(true);
+    localStorage.setItem('showGoHomeNav', true);
   }
 
   onChange = (event) => {
@@ -43,11 +42,12 @@ class LoginScreen extends Component {
           password: ''
         });
 
+        localStorage.setItem('showGoHomeNav', false);
         localStorage.setItem('userInfo', JSON.stringify(res.data));
 
         this.props.handleUserInfo(res.data);
 
-        this.props.history.push(`/dashboard/${res.data.id}`);
+        this.props.history.push('/dashboard');
       })
       .catch((err) => {
         console.log(err);

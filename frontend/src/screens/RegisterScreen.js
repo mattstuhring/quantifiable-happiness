@@ -17,7 +17,7 @@ class RegisterScreen extends Component {
   }
 
   componentDidMount() {
-    localStorage.setItem('showHomeNav', true);
+    localStorage.setItem('showGoHomeNav', true);
   }
 
   onChange = (event) => {
@@ -59,7 +59,7 @@ class RegisterScreen extends Component {
         this.props.history.push('/login');
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.error(err.response.data);
 
         this.setState({ error: err.response.data });
       });

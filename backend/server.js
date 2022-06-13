@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const userRoutes = require('./routes/userRoutes');
+const snapshotRoutes = require('./routes/snapshotRoutes');
 const { errorHandler } = require('./middleware/errorMiddleware');
 
 dotenv.config();
@@ -18,6 +19,7 @@ app.use(express.json()); // Accept json data in the body of request
 
 // Routes
 app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/snapshots', snapshotRoutes);
 
 // Error handling
 app.use(errorHandler);

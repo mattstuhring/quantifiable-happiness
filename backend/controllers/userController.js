@@ -2,13 +2,11 @@ const knex = require('../../knex/knex.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+// @desc    Register a new user
+// @route   POST /api/v1/users
+// @access  Public
 const registerUser = async (req, res, next) => {
   const { username, email, password, confirmPassword } = req.body;
-
-  console.log('USERNAME: ' + username);
-  console.log('EMAIL: ' + email);
-  console.log('PASSWORD: ' + password);
-  console.log('CONFIRM: ' + confirmPassword);
 
   if (!username) {
     return res.status(400).send('Username cannot be empty.');
@@ -28,7 +26,6 @@ const registerUser = async (req, res, next) => {
 
   try {
     const user = await knex('users').where({ email }).first();
-    console.log(user);
 
     if (user) {
       return res.status(400).json('User already exists.');
@@ -36,9 +33,10 @@ const registerUser = async (req, res, next) => {
 
     const hash = await bcrypt.hash(password, 10);
 
-    const userId = knex('users').insert({ username, email, password: hash }, [
-      'id'
-    ]);
+    const userId = await knex('users').insert(
+      { username, email, password: hash },
+      ['id']
+    );
 
     if (!userId) {
       return res.status(400).json('User failed to be created');
@@ -51,12 +49,14 @@ const registerUser = async (req, res, next) => {
   }
 };
 
+// @desc    Authenticate user & get token
+// @route   POST /api/v1/users/login
+// @access  Public
 const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
     const user = await knex('users').where({ email }).first();
-    console.log(user);
 
     if (!user) {
       return res.status(400).json('Account does not exist.');
@@ -73,9 +73,7 @@ const loginUser = async (req, res, next) => {
     });
 
     return res.status(200).json({
-      id: user.id,
       username: user.username,
-      email: user.email,
       token
     });
   } catch (error) {
@@ -84,12 +82,4 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-const getUserDashboard = (req, res, next) => {
-  const id = req.params.id;
-
-  console.log('getUserDashboard id: ' + id);
-
-  return res.status(200).json('Successful dashboard');
-};
-
-module.exports = { registerUser, loginUser, getUserDashboard };
+module.exports = { registerUser, loginUser };

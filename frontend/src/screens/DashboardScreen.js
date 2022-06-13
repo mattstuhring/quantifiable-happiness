@@ -7,23 +7,15 @@ class DashboardScreen extends Component {
     super(props);
 
     this.state = {
-      userId: null,
       username: ''
     };
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params;
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
     if (!userInfo) {
-      localStorage.removeItem('userInfo');
-
-      this.props.handleUserInfo(null);
-
-      this.props.history.push('/login');
-    } else if (Number(id) !== userInfo.id) {
-      console.log('ID does not match!');
+      this.handleRedirectToLogin();
     } else {
       const config = {
         headers: {
@@ -33,19 +25,26 @@ class DashboardScreen extends Component {
       };
 
       axios
-        .get(`/api/v1/users/dashboard/${id}`, config)
+        .get('/api/v1/snapshots/mysnapshots', config)
         .then((res) => {
-          console.log(res.data);
+          console.log(res);
           this.setState({
-            userId: id,
             username: userInfo.username
           });
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
+
+          this.handleRedirectToLogin();
         });
     }
   }
+
+  handleRedirectToLogin = () => {
+    localStorage.removeItem('userInfo');
+
+    this.props.history.push('/login');
+  };
 
   render() {
     return (

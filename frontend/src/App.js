@@ -10,54 +10,39 @@ import ExploreScreen from './screens/ExploreScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import QuantifyScreen from './screens/QuantifyScreen';
 
+// TODO: Refactor global state management
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       userInfo: null,
-      showHomeNav: false
+      showGoHomeNav: false
     };
   }
 
   componentDidMount() {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    const showGoHomeNav = JSON.parse(localStorage.getItem('showGoHomeNav'));
 
-    if (userInfo) {
-      this.setState({
-        userInfo
-      });
-    }
-
-    const showHomeNav = JSON.parse(localStorage.getItem('showHomeNav'));
-
-    if (showHomeNav) {
-      this.setState({
-        showHomeNav
-      });
-    }
+    this.setState({
+      userInfo,
+      showGoHomeNav
+    });
   }
 
-  handleLogout = () => {
+  handleUserLogout = () => {
     localStorage.removeItem('userInfo');
 
     this.setState({
       userInfo: null,
-      showHomeNav: false
+      showGoHomeNav: false
     });
   };
 
   handleUserInfo = (userInfo) => {
-    if (userInfo) {
-      this.setState({
-        userInfo
-      });
-    }
-  };
-
-  handleShowHomeNav = (showHomeNav) => {
     this.setState({
-      showHomeNav
+      userInfo
     });
   };
 
@@ -66,8 +51,8 @@ class App extends Component {
       <Router>
         <Header
           userInfo={this.state.userInfo}
-          showHomeNav={this.state.showHomeNav}
-          handleLogout={this.handleLogout}
+          showGoHomeNav={this.state.showGoHomeNav}
+          handleUserLogout={this.handleUserLogout}
         />
 
         <main>
@@ -76,23 +61,11 @@ class App extends Component {
             <Route
               path='/login'
               render={(props) => (
-                <LoginScreen
-                  {...props}
-                  handleUserInfo={this.handleUserInfo}
-                  handleShowHomeNav={this.handleShowHomeNav}
-                />
+                <LoginScreen {...props} handleUserInfo={this.handleUserInfo} />
               )}
             />
             <Route path='/register' component={RegisterScreen} />
-            <Route
-              path='/dashboard/:id'
-              render={(props) => (
-                <DashboardScreen
-                  {...props}
-                  handleUserInfo={this.handleUserInfo}
-                />
-              )}
-            />
+            <Route path='/dashboard' component={DashboardScreen} />
             <Route path='/quantify' component={QuantifyScreen} />
             <Route path='/explore' component={ExploreScreen} />
             <Route path='/profile' component={ProfileScreen} />

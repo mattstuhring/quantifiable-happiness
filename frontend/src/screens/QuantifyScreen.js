@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import think from '../images/think.png';
+import axios from 'axios';
 import {
   Button,
   Row,
@@ -38,16 +39,14 @@ class QuantifyScreen extends Component {
     super(props);
 
     this.state = {
-      radioMood: '',
-      radioLocation: '',
-      radioPeople: '',
+      mood: '',
+      location: '',
+      people: '',
       notes: ''
     };
   }
 
   onChange = (event) => {
-    console.log(event.target.value);
-
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -56,11 +55,35 @@ class QuantifyScreen extends Component {
   onSubmit = (event) => {
     event.preventDefault();
 
-    console.log('Submit happiness');
+    console.log('Submitting happiness...');
+
+    const { mood, location, people, notes } = this.state;
+    const payload = { mood, location, people, notes };
+
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`
+      }
+    };
+
+    axios
+      .post('/api/v1/snapshots', payload, config)
+      .then((res) => {
+        console.log(res);
+        // this.setState({
+        //   email: '',
+        //   password: ''
+        // });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   render() {
-    console.log(this.state);
     return (
       <div id='quantify'>
         <Row>
@@ -88,9 +111,9 @@ class QuantifyScreen extends Component {
                           className='radio-mood shadow-sm'
                           type='radio'
                           variant='secondary'
-                          name='radioMood'
+                          name='mood'
                           value='excellent'
-                          checked={this.state.radioMood === 'excellent'}
+                          checked={this.state.mood === 'excellent'}
                           onChange={this.onChange}
                         >
                           <FontAwesomeIcon icon={faFaceGrinBeam} size='3x' />
@@ -100,9 +123,9 @@ class QuantifyScreen extends Component {
                           className='radio-mood shadow-sm'
                           type='radio'
                           variant='secondary'
-                          name='radioMood'
+                          name='mood'
                           value='happy'
-                          checked={this.state.radioMood === 'happy'}
+                          checked={this.state.mood === 'happy'}
                           onChange={this.onChange}
                         >
                           <FontAwesomeIcon icon={faFaceSmile} size='3x' />
@@ -112,9 +135,9 @@ class QuantifyScreen extends Component {
                           className='radio-mood shadow-sm'
                           type='radio'
                           variant='secondary'
-                          name='radioMood'
+                          name='mood'
                           value='neutral'
-                          checked={this.state.radioMood === 'neutral'}
+                          checked={this.state.mood === 'neutral'}
                           onChange={this.onChange}
                         >
                           <FontAwesomeIcon icon={faFaceMeh} size='3x' />
@@ -124,9 +147,9 @@ class QuantifyScreen extends Component {
                           className='radio-mood shadow-sm'
                           type='radio'
                           variant='secondary'
-                          name='radioMood'
+                          name='mood'
                           value='sad'
-                          checked={this.state.radioMood === 'sad'}
+                          checked={this.state.mood === 'sad'}
                           onChange={this.onChange}
                         >
                           <FontAwesomeIcon icon={faFaceFrown} size='3x' />
@@ -136,9 +159,9 @@ class QuantifyScreen extends Component {
                           className='radio-mood shadow-sm'
                           type='radio'
                           variant='secondary'
-                          name='radioMood'
+                          name='mood'
                           value='terrible'
-                          checked={this.state.radioMood === 'terrible'}
+                          checked={this.state.mood === 'terrible'}
                           onChange={this.onChange}
                         >
                           <FontAwesomeIcon icon={faFaceTired} size='3x' />
@@ -156,9 +179,9 @@ class QuantifyScreen extends Component {
                             className='radio-location shadow-sm'
                             type='radio'
                             variant='secondary'
-                            name='radioLocation'
+                            name='location'
                             value='home'
-                            checked={this.state.radioLocation === 'home'}
+                            checked={this.state.location === 'home'}
                             onChange={this.onChange}
                           >
                             <FontAwesomeIcon
@@ -172,9 +195,9 @@ class QuantifyScreen extends Component {
                             className='radio-location shadow-sm'
                             type='radio'
                             variant='secondary'
-                            name='radioLocation'
+                            name='location'
                             value='work'
-                            checked={this.state.radioLocation === 'work'}
+                            checked={this.state.location === 'work'}
                             onChange={this.onChange}
                           >
                             <FontAwesomeIcon icon={faCity} size='lg' />
@@ -185,9 +208,9 @@ class QuantifyScreen extends Component {
                             className='radio-location shadow-sm'
                             type='radio'
                             variant='secondary'
-                            name='radioLocation'
+                            name='location'
                             value='nature'
-                            checked={this.state.radioLocation === 'nature'}
+                            checked={this.state.location === 'nature'}
                             onChange={this.onChange}
                           >
                             <FontAwesomeIcon icon={faTree} size='lg' />
@@ -198,9 +221,9 @@ class QuantifyScreen extends Component {
                             className='radio-location shadow-sm'
                             type='radio'
                             variant='secondary'
-                            name='radioLocation'
+                            name='location'
                             value='travel'
-                            checked={this.state.radioLocation === 'travel'}
+                            checked={this.state.location === 'travel'}
                             onChange={this.onChange}
                           >
                             <FontAwesomeIcon icon={faPlaneUp} size='lg' />
@@ -211,9 +234,9 @@ class QuantifyScreen extends Component {
                             className='radio-location shadow-sm'
                             type='radio'
                             variant='secondary'
-                            name='radioLocation'
+                            name='location'
                             value='public'
-                            checked={this.state.radioLocation === 'public'}
+                            checked={this.state.location === 'public'}
                             onChange={this.onChange}
                           >
                             <FontAwesomeIcon icon={faStore} size='lg' />
@@ -233,9 +256,9 @@ class QuantifyScreen extends Component {
                             className='radio-people'
                             type='radio'
                             variant='secondary'
-                            name='radioPeople'
+                            name='people'
                             value='myself'
-                            checked={this.state.radioPeople === 'myself'}
+                            checked={this.state.people === 'myself'}
                             onChange={this.onChange}
                           >
                             <FontAwesomeIcon icon={faUser} size='lg' />
@@ -246,9 +269,9 @@ class QuantifyScreen extends Component {
                             className='radio-people'
                             type='radio'
                             variant='secondary'
-                            name='radioPeople'
+                            name='people'
                             value='partner'
-                            checked={this.state.radioPeople === 'partner'}
+                            checked={this.state.people === 'partner'}
                             onChange={this.onChange}
                           >
                             <FontAwesomeIcon icon={faUserGroup} size='lg' />
@@ -259,9 +282,9 @@ class QuantifyScreen extends Component {
                             className='radio-people'
                             type='radio'
                             variant='secondary'
-                            name='radioPeople'
+                            name='people'
                             value='friend'
-                            checked={this.state.radioPeople === 'friend'}
+                            checked={this.state.people === 'friend'}
                             onChange={this.onChange}
                           >
                             <FontAwesomeIcon icon={faUsers} size='lg' />
@@ -272,9 +295,9 @@ class QuantifyScreen extends Component {
                             className='radio-people'
                             type='radio'
                             variant='secondary'
-                            name='radioPeople'
+                            name='people'
                             value='family'
-                            checked={this.state.radioPeople === 'family'}
+                            checked={this.state.people === 'family'}
                             onChange={this.onChange}
                           >
                             <FontAwesomeIcon icon={faPeopleRoof} size='lg' />
@@ -285,9 +308,9 @@ class QuantifyScreen extends Component {
                             className='radio-people'
                             type='radio'
                             variant='secondary'
-                            name='radioPeople'
+                            name='people'
                             value='coworker'
-                            checked={this.state.radioPeople === 'coworker'}
+                            checked={this.state.people === 'coworker'}
                             onChange={this.onChange}
                           >
                             <FontAwesomeIcon icon={faUserTie} size='lg' />
@@ -298,9 +321,9 @@ class QuantifyScreen extends Component {
                             className='radio-people'
                             type='radio'
                             variant='secondary'
-                            name='radioPeople'
+                            name='people'
                             value='other'
-                            checked={this.state.radioPeople === 'other'}
+                            checked={this.state.people === 'other'}
                             onChange={this.onChange}
                           >
                             <FontAwesomeIcon
