@@ -5,7 +5,11 @@ const knex = require('../../knex/knex.js');
 // @access  Private
 const getUserSnapshots = async (req, res, next) => {
   try {
-    res.status(200).json('User snapshots');
+    const { userId } = req;
+
+    const snapshots = await knex('mood_snapshots').where({ user_id: userId });
+
+    res.status(200).json(snapshots);
   } catch (error) {
     console.log(error);
     next(error);
